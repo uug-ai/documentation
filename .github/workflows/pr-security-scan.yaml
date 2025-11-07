@@ -1,7 +1,6 @@
 name: Security scan
 env:
-  PROJECT: "hub-pipeline-sequence"
-  PROJECT_SHORT: "sequence"
+  PROJECT: "documentation"
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -30,7 +29,7 @@ jobs:
       # Build the Docker image with the latest tag and the release tag
       - name: Build Docker image with PR tag
         run: |
-          docker build -t uugai/pullrequests:hub-pipeline-${{ env.PROJECT_SHORT }}-pr${{ github.event.number }}-${{ github.sha }} \
+          docker build -t uugai/pullrequests:${{ env.PROJECT }}-pr${{ github.event.number }}-${{ github.sha }} \
           --build-arg github_username=${{ secrets.USERNAME }} \
           --build-arg github_token=${{ secrets.TOKEN }} .
 
@@ -50,7 +49,7 @@ jobs:
         with:
           skip-setup-trivy: false
           scan-type: "image"
-          image-ref: "uugai/pullrequests:hub-pipeline-${{ env.PROJECT_SHORT }}-pr${{ github.event.number }}-${{ github.sha }}"
+          image-ref: "uugai/pullrequests:${{ env.PROJECT }}-pr${{ github.event.number }}-${{ github.sha }}"
           format: "table"
           exit-code: "0"
           ignore-unfixed: false
