@@ -22,7 +22,13 @@ RUN git config --global \
 # Set working directory to the app folder
 WORKDIR /build/app
 
-# Install dependencies for building Hugo
+# Install dependencies for building Hugo (required for ARM64)
+RUN apt-get update && apt-get install -y \
+    libwebp-dev \
+    libsass-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Go dependencies
 RUN go mod tidy
 
 # Install Hugo
