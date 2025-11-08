@@ -40,17 +40,17 @@ FROM alpine:latest
 
 RUN apk update && apk add ca-certificates curl libstdc++ libc6-compat --no-cache && rm -rf /var/cache/apk/*
 
+# Install nginx
+RUN apk add --no-cache nginx
+
+# Copy nginx configuration
+COPY --chown=65534:0 nginx.conf /etc/nginx/conf.d/default.conf
+
 # Set up the app to run as a non-root user inside the /data folder
 # User ID 65534 is usually user 'nobody'.
 # The executor of this image should still specify a user during setup.
 COPY --chown=65534:0 --from=builder /data /data
 USER 65534
 WORKDIR /data
-
-# Install nginx
-RUN apk add --no-cache nginx
-
-# Copy nginx configuration
-COPY --chown=65534:0 nginx.conf /etc/nginx/conf.d/default.conf
 
 ENTRYPOINT ["sh", "-c", "nginx -g 'daemon off;'"]
