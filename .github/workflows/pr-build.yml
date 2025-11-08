@@ -4,6 +4,7 @@ on:
     types: [opened, synchronize]
 
 env:
+  PR_NUMBER: ${{ github.event.number }}
   PROJECT: ${{ github.event.repository.name }}
   GO_VERSION: "1.24"
 
