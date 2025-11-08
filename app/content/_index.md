@@ -1,11 +1,11 @@
 ---
-title: Documentation and knowledge base
+title: Documentation and knowledge hub
 toc: false
 ---
 
 Welcome to our comprehensive documentation hub. This is your go-to resource for tutorials, technical documentation, answers to frequently asked questions, and information about our support channels. Whether you're getting started or looking for advanced guidance, you'll find everything you need to succeed with our platform.
 
-## Explore
+## Resources
 
 {{< cards >}}
   {{< card link="docs" title="Documentation" icon="book-open" >}}

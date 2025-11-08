@@ -3,7 +3,19 @@
 :root {
   --primary-hue: 245deg;
   --primary-saturation: 93%;
-  --primary-lightness: 100%;
+  --primary-lightness: 50%;
+  --secondary-hue: 339deg;
+  --secondary-saturation: 100%;
+  --secondary-lightness: 50%;
+}
+
+.hextra-nav-container {
+    border-top: 5px solid;
+    border-image: linear-gradient(
+      90deg, 
+      hsl(var(--primary-hue), var(--primary-saturation), var(--primary-lightness)), 
+      hsl(var(--secondary-hue), var(--secondary-saturation), var(--secondary-lightness))
+    ) 1;
 }
 
 body {

@@ -1,8 +1,11 @@
-FROM mcr.microsoft.com/devcontainers/go:1.24-bookworm AS builder
 
 ARG APP_NAME=documentation
 ARG github_username
 ARG github_token
+
+# For maximum backward compatibility with Hugo modules
+ENV HUGO_ENVIRONMENT=production
+ENV HUGO_ENV=production
 
 WORKDIR /build
 
@@ -15,14 +18,20 @@ RUN git config --global \
     url."https://${github_username}:${github_token}@github.com/".insteadOf \
     "https://github.com/"
 
+#
+WORKDIR /build/app
+
 # Install dependencies for building Hugo
-RUN cd app && go mod download
+RUN go mod tidy
 
 # Install Hugo
 RUN go install -tags extended,withdeploy github.com/gohugoio/hugo@latest && \
     hugo version && \
-    cd app && \
-    hugo build
+
+# Build the app
+    hugo \
+    --gc --minify \
+    --baseURL "https://docs.uug.ai/"
 
 # Copy or create other directories/files your app needs during runtime.
 # E.g. this example uses /data as a working directory that would probably
