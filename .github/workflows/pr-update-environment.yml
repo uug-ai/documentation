@@ -37,7 +37,7 @@ jobs:
   format:
     name: Print Pull Request Info
     runs-on: ubuntu-24.04
-    depends-on: build
+    depends-on: image-build
     steps:
       # Print out the pull request event type
       - name: Print out pull request event type
