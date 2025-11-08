@@ -50,18 +50,7 @@ WORKDIR /data
 # Install nginx
 RUN apk add --no-cache nginx
 
-# The website is exposed at /data/site
-# Create an nginx config file to serve the site
-RUN cat > /etc/nginx/conf.d/default.conf << 'EOF'
-server {
-    listen 80;
-    server_name localhost;
-    root /data/site;
-    index index.html;
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-EOF
+# Copy nginx configuration
+COPY --chown=65534:0 nginx.conf /etc/nginx/conf.d/default.conf
 
 ENTRYPOINT ["sh", "-c", "nginx -g 'daemon off;'"]
