@@ -29,18 +29,15 @@ jobs:
           check-latest: true
           cache-dependency-path: |
             app/go.sum
-      # Test the Golang application
-      - name: Test Golang application
+      # Install Hugo
+      - name: Install Hugo
         run: |
-          cd app
-          go fmt $(go list ./... | grep -v /vendor/)
-          go vet $(go list ./... | grep -v /vendor/)
-          go test -race $(go list ./... | grep -v /vendor/)
+          go install -tags extended,withdeploy github.com/gohugoio/hugo@latest
       # Build the Golang application to the dist folder
       - name: Build Golang application
         run: |
           cd app
-          go build -o main
+          hugo build
       - name: Run Build
         run: |
           docker build -t ${{matrix.architecture}} -f Dockerfile --pull --no-cache .
@@ -60,6 +57,22 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Checkout
         uses: actions/checkout@v3
+      # Setup Golang for us in the workflow
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          check-latest: true
+          cache-dependency-path: |
+            app/go.sum
+      # Install Hugo
+      - name: Install Hugo
+        run: |
+          go install -tags extended,withdeploy github.com/gohugoio/hugo@latest
+      # Build the Golang application to the dist folder
+      - name: Build Golang application
+        run: |
+          cd app
+          hugo build
       - name: Run Build
         run: |
           docker build -t ${{matrix.architecture}} -f Dockerfile --pull --no-cache .
