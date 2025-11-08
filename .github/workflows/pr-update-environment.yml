@@ -11,7 +11,8 @@ env:
   TAG: ${{ github.event.repository.name }}-pr${{ github.event.number }}-${{ github.sha }}
 
 jobs:
-  build:
+  image-build:
+    name: Build container image
     runs-on: ubuntu-24.04
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -33,11 +34,21 @@ jobs:
           push: true
           tags: uugai/pullrequests:${{ env.TAG }}
 
+  format:
+    name: Print Pull Request Info
+    runs-on: ubuntu-24.04
+    depends-on: build
+    steps:
       # Print out the pull request event type
       - name: Print out pull request event type
         run: |
           echo Pull request event: ${{ github.event.action }}
 
+  update-pr-environment:
+    name: Update Pull Request environment in GitOps repo
+    runs-on: ubuntu-24.04
+    depends-on: format
+    steps:
       # After we build the Docker image, we create a pull request to update the GitOps repository
       # This will allow us to update the Helm chart with the new Docker image tag.
 
