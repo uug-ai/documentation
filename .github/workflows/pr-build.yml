@@ -28,16 +28,18 @@ jobs:
           go-version: "1.24"
           check-latest: true
           cache-dependency-path: |
-            go.sum
+            app/go.sum
       # Test the Golang application
       - name: Test Golang application
         run: |
+          cd app
           go fmt $(go list ./... | grep -v /vendor/)
           go vet $(go list ./... | grep -v /vendor/)
           go test -race $(go list ./... | grep -v /vendor/)
       # Build the Golang application to the dist folder
       - name: Build Golang application
         run: |
+          cd app
           go build -o main
       - name: Run Build
         run: |
