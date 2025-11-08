@@ -1,3 +1,4 @@
+FROM mcr.microsoft.com/devcontainers/go:1.24-bookworm
 
 ARG APP_NAME=documentation
 ARG github_username
