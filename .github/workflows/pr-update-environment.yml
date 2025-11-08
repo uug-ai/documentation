@@ -8,12 +8,11 @@ env:
   PR_NUMBER: ${{ github.event.number }}
   PROJECT: ${{ github.event.repository.name }}
   SHA: ${{ github.sha }}
+  TAG: ${{ github.event.repository.name }}-pr${{ github.event.number }}-${{ github.sha }}
 
 jobs:
   build:
     runs-on: ubuntu-24.04
-    env:
-      TAG: ${{ env.PROJECT }}-pr${{ env.PR_NUMBER }}-${{ env.SHA }}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
