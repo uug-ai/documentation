@@ -46,10 +46,13 @@ RUN apk add --no-cache nginx
 # Copy nginx configuration
 COPY --chown=65534:0 nginx.conf /etc/nginx/nginx.conf
 
-# Create necessary directories and set permissions
-RUN mkdir -p /tmp /var/cache/nginx /var/run \
-    && chown -R 65534:0 /tmp /var/cache/nginx /var/run \
-    && chmod -R g+w /tmp /var/cache/nginx /var/run
+# Create necessary directories and set permissions for non-root user
+RUN mkdir -p /tmp/client_temp /tmp/proxy_temp_path /tmp/fastcgi_temp /tmp/uwsgi_temp /tmp/scgi_temp \
+    && chown -R 65534:0 /tmp \
+    && chmod -R 755 /tmp
+
+# Expose port 8080 (non-privileged port)
+EXPOSE 8080
 
 # Set up the app to run as a non-root user inside the /data folder
 # User ID 65534 is usually user 'nobody'.
