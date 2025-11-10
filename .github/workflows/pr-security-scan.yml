@@ -8,8 +8,9 @@ on:
       - main
 
 env:
-  PR_NUMBER: ${{ github.event.number }}
+  ORGANIZATION: uugai
   PROJECT: ${{ github.event.repository.name }}
+  PR_NUMBER: ${{ github.event.number }}
   SHA: ${{ github.sha }}
 
 jobs:
