@@ -10,21 +10,13 @@ We're here to help you succeed! Whether you're facing technical challenges, have
 ## Support Channels
 
 {{< cards >}}
-  {{< card title="Community Forum" icon="chat-bubble-left-right" >}}
-    Join our vibrant community to ask questions, share knowledge, and connect with other users. Get answers from both our team and experienced community members.
-  {{< /card >}}
+  {{< card title="Community Forum" icon="chat-bubble-left-right" content="Join our vibrant community to ask questions, share knowledge, and connect with other users. Get answers from both our team and experienced community members." >}}
   
-  {{< card title="Email Support" icon="envelope" >}}
-    Contact our support team directly via email for technical issues, billing questions, or account-related concerns. We typically respond within 24 hours.
-  {{< /card >}}
+  {{< card title="Email Support" icon="envelope" content="Contact our support team directly via email for technical issues, billing questions, or account-related concerns. We typically respond within 24 hours." >}}
   
-  {{< card title="Live Chat" icon="chat-bubble-bottom-center" >}}
-    Get instant help during business hours through our live chat feature. Perfect for quick questions and real-time troubleshooting assistance.
-  {{< /card >}}
+  {{< card title="Live Chat" icon="chat-bubble-bottom-center" content="Get instant help during business hours through our live chat feature. Perfect for quick questions and real-time troubleshooting assistance." >}}
   
-  {{< card title="Documentation" icon="book-open" >}}
-    Explore our comprehensive documentation with step-by-step guides, API references, and detailed explanations of all platform features.
-  {{< /card >}}
+  {{< card title="Documentation" icon="book-open" content="Explore our comprehensive documentation with step-by-step guides, API references, and detailed explanations of all platform features." >}}
 {{< /cards >}}
 
 ## How to Get the Best Support
