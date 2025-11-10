@@ -5,8 +5,7 @@ on:
 
 env:
   ORGANIZATION: uugai
-  REPO: "documentation"
-  REPO_SHORT: "documentation"
+  PROJECT: ${{ github.event.repository.name }}
 
 jobs:
 
@@ -30,8 +29,8 @@ jobs:
           docker build -t ${{matrix.architecture}}  --pull --no-cache .
       - name: Build and push Docker image
         run: |
-          docker tag ${{matrix.architecture}} $ORGANIZATION/$REPO-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
-          docker push $ORGANIZATION/$REPO-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
+          docker tag ${{matrix.architecture}} $ORGANIZATION/$PROJECT-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
+          docker push $ORGANIZATION/$PROJECT-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
 
   build-arm64:
     runs-on: sh-ubuntu-24.04-arm 
@@ -53,8 +52,8 @@ jobs:
           docker build -t ${{matrix.architecture}} --pull --no-cache .
       - name: Build and push Docker image
         run: |
-          docker tag ${{matrix.architecture}} $ORGANIZATION/$REPO-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
-          docker push $ORGANIZATION/$REPO-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
+          docker tag ${{matrix.architecture}} $ORGANIZATION/$PROJECT-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
+          docker push $ORGANIZATION/$PROJECT-arch:arch-${{matrix.architecture}}-${{github.event.inputs.tag || github.ref_name}}
 
   create-manifest:
     runs-on: ubuntu-24.04
@@ -67,16 +66,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Create and push multi-arch manifest
         run: |
-          docker manifest create $ORGANIZATION/$REPO:${{ github.event.inputs.tag || github.ref_name }} \
-            $ORGANIZATION/$REPO-arch:arch-amd64-${{github.event.inputs.tag || github.ref_name}} \
-            $ORGANIZATION/$REPO-arch:arch-arm64-${{github.event.inputs.tag || github.ref_name}}
-          docker manifest push $ORGANIZATION/$REPO:${{ github.event.inputs.tag || github.ref_name }}
+          docker manifest create $ORGANIZATION/$PROJECT:${{ github.event.inputs.tag || github.ref_name }} \
+            $ORGANIZATION/$PROJECT-arch:arch-amd64-${{github.event.inputs.tag || github.ref_name}} \
+            $ORGANIZATION/$PROJECT-arch:arch-arm64-${{github.event.inputs.tag || github.ref_name}}
+          docker manifest push $ORGANIZATION/$PROJECT:${{ github.event.inputs.tag || github.ref_name }}
       - name: Create and push latest manifest
         run: |
-          docker manifest create $ORGANIZATION/$REPO:latest \
-            $ORGANIZATION/$REPO-arch:arch-amd64-${{github.event.inputs.tag || github.ref_name}} \
-            $ORGANIZATION/$REPO-arch:arch-arm64-${{github.event.inputs.tag || github.ref_name}}
-          docker manifest push $ORGANIZATION/$REPO:latest
+          docker manifest create $ORGANIZATION/$PROJECT:latest \
+            $ORGANIZATION/$PROJECT-arch:arch-amd64-${{github.event.inputs.tag || github.ref_name}} \
+            $ORGANIZATION/$PROJECT-arch:arch-arm64-${{github.event.inputs.tag || github.ref_name}}
+          docker manifest push $ORGANIZATION/$PROJECT:latest
 
       # After we build the Docker image, we create a pull request to update the GitOps repository
       # This will allow us to update the Helm chart with the new Docker image tag.
@@ -85,10 +84,10 @@ jobs:
         with:
           github-token: ${{ secrets.TOKEN }}
           gitops-repo: "uug-ai/gitops"
-          gitops-file: "environments/staging/kerberos-hub/values.yaml"
-          gitops-pr-branch: "release-${{ env.REPO }}-${{ github.event.inputs.tag || github.ref_name }}"
-          gitops-key: "kerberospipeline.${{ env.REPO_SHORT }}.tag"
+          gitops-file: "environments/staging/${{ env.PROJECT }}/values.yaml"
+          gitops-pr-branch: "release-${{ env.PROJECT }}-${{ github.event.inputs.tag || github.ref_name }}"
+          gitops-key: ".spec.template.spec.containers[0].image"
           gitops-value: "${{ github.event.inputs.tag || github.ref_name }}"
           commit-email: "gitops@uug.ai"
           commit-name: "GitOps - UUG.AI"
-          commit-message: "A new release for Kerberos Hub Pipeline ${{ env.REPO_SHORT }} - ${{ github.event.inputs.tag || github.ref_name }}"
+          commit-message: "A new release for ${{ env.PROJECT }} - ${{ github.event.inputs.tag || github.ref_name }}"

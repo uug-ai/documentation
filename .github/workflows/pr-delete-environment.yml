@@ -20,7 +20,7 @@ jobs:
           action: ${{ github.event.action }}
           github-token: ${{ secrets.TOKEN }}
           gitops-repo: "uug-ai/gitops"
-          gitops-project: "vault"
+          gitops-project: ${{ env.PROJECT }}
           gitops-pr-environment: "pr${{ env.PR_NUMBER }}"
           commit-email: "gitops@uug.ai"
           commit-name: "GitOps - UUG.AI"
