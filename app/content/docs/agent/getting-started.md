@@ -1,16 +1,7 @@
 ---
 title: "Getting Started"
-description: ""
-lead: ""
-date: 2020-10-06T08:49:31+00:00
-lastmod: 2020-10-06T08:49:31+00:00
-draft: false
-images: []
-menu:
-  agent:
-    parent: "agent"
-weight: 202
-toc: true
+type: docs
+next: first-page
 ---
 
 Once you've installed one ore more Kerberos Agents, you should have access to the Kerberos Agent user interface. The interface allows you to interact with the Kerberos Agent, and more specifically configure the camera stream, setup a cloud connection, watch recordings and live views, etc.

@@ -1,17 +1,7 @@
 ---
 title: "Installation"
-description: ""
-lead: ""
-date: 2020-10-06T08:49:31+00:00
-lastmod: 2020-10-06T08:49:31+00:00
-draft: false
 type: docs
-images: []
-menu:
-  vault:
-    parent: "vault"
-weight: 302
-toc: true
+next: first-page
 ---
 
 Kerberos Vault is shipped as a container image and is preferably installed inside a Kubernetes cluster. This means that you can run it where and how you want. Depending on your setup, home installation or production ready deployment, you might decide to install it using standard `Docker` or `Kubernetes` depending on your needs and requirements.
