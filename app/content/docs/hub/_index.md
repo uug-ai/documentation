@@ -1,5 +1,5 @@
 ---
-title: "Vault"
+title: "Hub"
 type: docs
 next: first-page
 ---

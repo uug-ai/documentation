@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/devcontainers/go:1.24-bookworm AS builder
 
-ARG APP_NAME=documentation
 ARG github_username
 ARG github_token
 
