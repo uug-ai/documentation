@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Documentation"
 description: "And so it began. The ecosystem of Kerberos.io"
 lead: "And so it began.  The ecosystem of Kerberos.io"
 date: 2020-10-06T08:48:57+00:00

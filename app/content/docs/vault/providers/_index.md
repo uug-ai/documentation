@@ -13,10 +13,10 @@ weight: 305
 toc: true
 ---
 
-When deploying Kerberos Agents you have the possibility to Bring Your Own Storage; at the edge or in the cloud. By configuring Kerberos Vault you persist your recordings in your preferred storage providers. Following providers are supported:
+When deploying Agents you have the possibility to Bring Your Own Storage; at the edge or in the cloud. By configuring Vault you persist your recordings in your preferred storage providers. Following providers are supported:
 
-- [Google Cloud Platform Storage](https://cloud.google.com/storage)
-- [Amazon Web Services S3](https://aws.amazon.com/s3/)
+- [Google Cloud Platform Storage](google-cloud-storage/)
+- [Amazon Web Services S3](amazon-s3/)
 - [Storj](https://storj.io/)
 - [Minio](https://min.io/)
 - [Ceph](https://ceph.io/)
