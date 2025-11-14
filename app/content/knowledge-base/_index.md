@@ -13,7 +13,7 @@ You can use the search functionality in the navigation bar to quickly find what 
 
 {{< cards >}}
   {{< card link="agent/" title="Agent" icon="book-open" >}}
-  {{< card link="factory/" title="Factory" icon="light-bulb" >}}
-  {{< card link="vault/" title="Vault" icon="support" >}}
-  {{< card link="hub/" title="Hub" icon="scissors" >}}
+  {{< card link="factory/" title="Factory" icon="book-open" >}}
+  {{< card link="vault/" title="Vault" icon="book-open" >}}
+  {{< card link="hub/" title="Hub" icon="book-open" >}}
 {{< /cards >}}
