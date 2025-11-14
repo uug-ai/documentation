@@ -16,6 +16,7 @@ toc: true
 When deploying Agents you have the possibility to Bring Your Own Storage; at the edge or in the cloud. By configuring Vault you persist your recordings in your preferred storage providers. Following providers are supported:
 
 - [Google Cloud Platform Storage](google-cloud-storage/)
+- [Azure Blob Storage](azure-storage-account/)
 - [Amazon Web Services S3](amazon-s3/)
 - [Storj](https://storj.io/)
 - [Minio](https://min.io/)
@@ -43,13 +44,21 @@ Once configured you can add multiple and different providers. Have some fun.
 
 ## Cloud storage providers
 
-Kerberos Vault integrates with storage providers in the cloud such as AWS S3, GCP Storage and Storj. The advantage of previously mentioned storage providers, is that the take complete control of your every growing storage requirements. They scale with your needs at a low TCO.
-
-### AWS S3
-
-> Tutorial to be written.
+Kerberos Vault integrates with storage providers in the cloud such as AWS S3, GCP Storage, Azure Storage and Storj. The advantage of previously mentioned storage providers, is that they take complete control of your ever growing storage requirements. They scale with your needs at a low TCO.
 
 ### GCP Storage
+
+[Google Cloud Storage](google-cloud-storage/) provides world-wide, highly durable object storage that scales automatically with your needs. It offers multiple storage classes for cost optimization and integrates seamlessly with Kerberos Vault through S3-compatible HMAC authentication. GCS is ideal for cloud-based deployments requiring global availability, with features like automatic lifecycle management, strong security controls, and competitive pricing across different access patterns.
+
+[Read the full Google Cloud Storage setup guide →](google-cloud-storage/)
+
+### Azure Storage
+
+[Azure Blob Storage](azure-storage-account/) is Microsoft's enterprise-grade object storage solution offering massive scalability and multiple access tiers (Hot, Cool, Cold, Archive) for cost optimization. With redundancy options like LRS, ZRS, GRS, and RA-GRS, Azure Storage provides the flexibility to meet various availability and compliance requirements. It integrates with Kerberos Vault and is particularly well-suited for organizations already invested in the Azure ecosystem.
+
+[Read the full Azure Storage setup guide →](azure-storage-account/)
+
+### AWS S3
 
 > Tutorial to be written.
 
