@@ -1,8 +1,6 @@
 ---
 date: '2025-11-08T10:29:28Z'
-title: 'Hub'
-weight: 4
+title: 'Factory'
+weight: 2
 ---
-w
 
-wefwef
